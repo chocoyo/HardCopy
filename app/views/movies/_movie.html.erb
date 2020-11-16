@@ -1,6 +1,8 @@
 <div class="column card is-one-quarter has-background-link">
   <h1 class="title"><%= movie.title %></h1>
-  <%= image_tag movie.image %>
+  <% if movie.image.present? %>
+    <%= image_tag movie.image %>
+  <% end %>
   <p><%= movie.director%></p>
   <p><%= movie.description%></p>
 </div>
