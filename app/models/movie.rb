@@ -1,4 +1,4 @@
 class Movie < ApplicationRecord
-  has_one :genres
+  belongs_to :genre
   has_one_attached :image
 end
