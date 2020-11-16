@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  release_date: 2020-11-15
+  rating: 
+  description: MyText
+  director: MyString
+
+two:
+  release_date: 2020-11-15
+  rating: 
+  description: MyText
+  director: MyString
