@@ -1,5 +1,5 @@
 ActiveAdmin.register Movie do
-  permit_params :release_date, :rating, :description, :director, :image
+  permit_params :release_date, :rating, :description, :director, :image, :title
 
   form do |f|
     f.semantic_errors
