@@ -38,7 +38,6 @@
           </a>
 
           <div class="navbar-dropdown">
-            <%# <%= select_tag("category_id", options_from_collection_for_select(Genre.all, "id", "title"), placeholder: 'All')%>
             <% Genre.all.each do | genre |%>
               <%= link_to genre.title, movies_show_movies_of_genre_path(:title => genre.title), :class=>"navbar-item"%>
             <% end %>
@@ -49,12 +48,21 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
+          <% if user_signed_in? %>
+            <a class="button is-primary">
+              <strong>View Profile</strong>
+            </a>
+            <a class="button is-light" data-method="delete" href="<%= destroy_user_session_path %>">
+              <strong>Sign Out</strong>
+            </a>
+          <% else %>
             <a class="button is-primary" href="<%= new_user_registration_path %>">
               <strong>Sign up</strong>
             </a>
             <a class="button is-light" href="<%= new_user_session_path %>">
               Log in
             </a>
+            <% end %>
           </div>
         </div>
       </div>
