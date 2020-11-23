@@ -16,17 +16,25 @@ puts "Deleting data"
 Movie.destroy_all
 Genre.destroy_all
 
-puts "Adding basic data"
-action = Genre.create(title: "Action")
-horror = Genre.create(title: "Horror")
-family = Genre.create(title: "Family")
-
-Movie.create(title: "Mission Impossible", director: "Not Me", description: "Crazy Movie", genre: action)
-Movie.create(title: "Very Scary Movie", director: "Also Not Me", description: "Crazy Movie", genre: horror)
-Movie.create(title: "Cars", director: "Lighting McQueen", description: "Crazy Movie", genre: family)
-
-puts "Added Data"
-
 puts "Attempting To Pull From TMDB"
+
 Tmdb::Api.key(ENV["API_KEY"])
-puts Tmdb::Movie.find("batman")[2].inspect
+
+Tmdb::Movie.find("spiderman").each do |movie|
+  # Get Details Of Movie
+  movie_details = Tmdb::Movie.detail(movie.id)
+
+  # If the movie has no genres, skip it
+  next if movie_details["genres"][0].nil?
+
+  # Take the first genre (for now)
+  genre = Genre.find_or_create_by(title: movie_details["genres"][0]["name"])
+
+  # Create Movie
+  Movie.create(title:       movie.title,
+               director:    movie.original_title,
+               description: movie.overview,
+               genre:       genre)
+end
+
+puts "Added Data From IMDB"
