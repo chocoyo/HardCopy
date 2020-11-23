@@ -1,0 +1,2 @@
+class Gst < ApplicationRecord
+end
