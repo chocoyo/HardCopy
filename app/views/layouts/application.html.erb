@@ -49,7 +49,7 @@
         <div class="navbar-item">
           <div class="buttons">
           <% if user_signed_in? %>
-            <a class="button is-primary">
+            <a class="button is-primary" href="/users/show">
               <strong>View Profile</strong>
             </a>
             <a class="button is-light" data-method="delete" href="<%= destroy_user_session_path %>">
