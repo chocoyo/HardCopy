@@ -20,7 +20,7 @@ puts "Attempting To Pull From TMDB"
 
 Tmdb::Api.key(ENV["API_KEY"])
 
-Tmdb::Movie.find("spiderman").each do |movie|
+Tmdb::Movie.find("harry potter").each do |movie|
   # Get Details Of Movie
   movie_details = Tmdb::Movie.detail(movie.id)
 
@@ -30,11 +30,23 @@ Tmdb::Movie.find("spiderman").each do |movie|
   # Take the first genre (for now)
   genre = Genre.find_or_create_by(title: movie_details["genres"][0]["name"])
 
+  # Get name of image on server
+  imageName = Tmdb::Movie.images(movie.id)["posters"][0]["file_path"]
+
+  # Download Image
+  tempImage = Down.download("http://image.tmdb.org/t/p/w500/" + imageName)
+
   # Create Movie
-  Movie.create(title:       movie.title,
-               director:    movie.original_title,
-               description: movie.overview,
-               genre:       genre)
+  newMovie = Movie.create(title:       movie.title,
+                          director:    movie.original_title,
+                          description: movie.overview,
+                          genre:       genre)
+
+  # Attach images to the new movie
+  newMovie.image.attach(io: File.open(tempImage), filename: imageName, content_type: "image/jpg")
+
+rescue StandardError => e
+  puts "Movie " + movie.title + " has missing data... skipping"
 end
 
 puts "Added Data From IMDB"
