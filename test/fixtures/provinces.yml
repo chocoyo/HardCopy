@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  PST: 1
+  HST: 1
+
+two:
+  name: MyText
+  PST: 1
+  HST: 1
