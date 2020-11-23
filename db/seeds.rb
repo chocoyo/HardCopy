@@ -26,3 +26,7 @@ Movie.create(title: "Very Scary Movie", director: "Also Not Me", description: "C
 Movie.create(title: "Cars", director: "Lighting McQueen", description: "Crazy Movie", genre: family)
 
 puts "Added Data"
+
+puts "Attempting To Pull From TMDB"
+Tmdb::Api.key(ENV["API_KEY"])
+puts Tmdb::Movie.find("batman")[2].inspect

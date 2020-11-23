@@ -59,3 +59,5 @@ gem 'devise'
 gem "bulma-rails", "~> 0.9.0"
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'themoviedb'
