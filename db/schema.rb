@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_214626) do
-
+ActiveRecord::Schema.define(version: 20_201_123_223_303) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -77,6 +76,12 @@ ActiveRecord::Schema.define(version: 2020_11_23_214626) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "gsts", force: :cascade do |t|
+    t.integer "rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "movies", force: :cascade do |t|
     t.date "release_date"
     t.integer "rating"
@@ -87,6 +92,14 @@ ActiveRecord::Schema.define(version: 2020_11_23_214626) do
     t.string "title"
     t.integer "genre_id", null: false
     t.index ["genre_id"], name: "index_movies_on_genre_id"
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.text "name"
+    t.integer "PST"
+    t.integer "HST"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
