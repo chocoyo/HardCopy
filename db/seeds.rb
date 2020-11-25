@@ -20,7 +20,7 @@ puts "Attempting To Pull From TMDB"
 
 Tmdb::Api.key(ENV["API_KEY"])
 
-Tmdb::Movie.find("harry potter").each do |movie|
+Tmdb::Movie.find("mission").each do |movie|
   # Get Details Of Movie
   movie_details = Tmdb::Movie.detail(movie.id)
 
