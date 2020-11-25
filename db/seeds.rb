@@ -16,13 +16,37 @@ puts "Deleting data"
 Movie.destroy_all
 Genre.destroy_all
 
-puts "Adding basic data"
-action = Genre.create(title: "Action")
-horror = Genre.create(title: "Horror")
-family = Genre.create(title: "Family")
+puts "Attempting To Pull From TMDB"
 
-Movie.create(title: "Mission Impossible", director: "Not Me", description: "Crazy Movie", genre: action)
-Movie.create(title: "Very Scary Movie", director: "Also Not Me", description: "Crazy Movie", genre: horror)
-Movie.create(title: "Cars", director: "Lighting McQueen", description: "Crazy Movie", genre: family)
+Tmdb::Api.key(ENV["API_KEY"])
 
-puts "Added Data"
+Tmdb::Movie.find("harry potter").each do |movie|
+  # Get Details Of Movie
+  movie_details = Tmdb::Movie.detail(movie.id)
+
+  # If the movie has no genres, skip it
+  next if movie_details["genres"][0].nil?
+
+  # Take the first genre (for now)
+  genre = Genre.find_or_create_by(title: movie_details["genres"][0]["name"])
+
+  # Get name of image on server
+  imageName = Tmdb::Movie.images(movie.id)["posters"][0]["file_path"]
+
+  # Download Image
+  tempImage = Down.download("http://image.tmdb.org/t/p/w500/" + imageName)
+
+  # Create Movie
+  newMovie = Movie.create(title:       movie.title,
+                          director:    movie.original_title,
+                          description: movie.overview,
+                          genre:       genre)
+
+  # Attach images to the new movie
+  newMovie.image.attach(io: File.open(tempImage), filename: imageName, content_type: "image/jpg")
+
+rescue StandardError => e
+  puts "Movie " + movie.title + " has missing data... skipping"
+end
+
+puts "Added Data From IMDB"
