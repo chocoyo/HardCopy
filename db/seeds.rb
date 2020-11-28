@@ -40,6 +40,7 @@ Tmdb::Movie.find("harry potter").each do |movie|
   newMovie = Movie.create(title:       movie.title,
                           director:    movie.original_title,
                           description: movie.overview,
+                          rating:      movie.vote_average,
                           genre:       genre)
 
   # Attach images to the new movie
