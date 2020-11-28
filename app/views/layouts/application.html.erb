@@ -49,6 +49,11 @@
         <div class="navbar-item">
           <div class="buttons">
           <% if user_signed_in? %>
+            <% if cart.present? %>
+              <a class="button is-dark" href="#">
+                <strong>Cart (<%=cart.size %>)</strong>
+              </a>
+            <% end %>
             <a class="button is-primary" href="/users/show">
               <strong>View Profile</strong>
             </a>
