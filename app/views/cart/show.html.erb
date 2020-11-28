@@ -1,0 +1,17 @@
+<div id="shoppingCart" class="container">
+  <h1 class="title has-text-centered">Shopping Cart</h1>
+  <table class="has-text-centered">
+    <tr>
+      <th>Movie Name</th>
+      <th>Rating</th>
+    </tr>
+    <% cart.each do |item| %>
+      <tr>
+        <td><%= item.title %></td>
+        <td><%= item.rating %></td>
+      </tr>
+    <% end %>
+
+  </table>
+
+</div>

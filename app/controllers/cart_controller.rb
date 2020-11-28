@@ -9,4 +9,6 @@ class CartController < ApplicationController
     session[:cart].delete(params[:id].to_i)
     redirect_to root_path
   end
+
+  def show; end
 end

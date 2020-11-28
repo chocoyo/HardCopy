@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
   get "/users/show", to: "users#show"
 
-  resources :cart, only: %i[create destroy]
+  resources :cart, only: %i[create destroy show]
 end
