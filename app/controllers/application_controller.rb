@@ -1,8 +1,9 @@
-class ApplicationController < ActionController::Base\
+class ApplicationController < ActionController::Base
   # TODO: Ask Kyle About This
   # protect_from_forgery with: :exception
 
-  before_action :initialize_session, :configure_permitted_parameters, if: :devise_controller?
+  before_action :initialize_session
+  before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :cart
 
   protected
@@ -16,10 +17,10 @@ class ApplicationController < ActionController::Base\
   private
 
   def initialize_session
-    session[:shopping_cart] ||= [] # Init shopping cart with nothing
+    session[:cart] ||= [] # Init shopping cart with nothing
   end
 
   def cart
-    Movie.find(session[:shopping_cart])
+    Movie.find(session[:cart])
   end
 end

@@ -5,4 +5,9 @@
   <% end %>
   <p><%= movie.director%></p>
   <p><%= movie.description%></p>
+
+  <%= form_with url: cart_index_path do %>
+    <%= hidden_field_tag(:id, movie.id)%>
+    <%= button_tag 'Add To Cart' %>
+  <% end %>
 </div>

@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get "/movies/show_movies_of_genre", to: "movies#show_movies_of_genre"
 
   get "/users/show", to: "users#show"
+
+  resources :cart, only: %i[create destroy]
 end
