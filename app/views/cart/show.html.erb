@@ -1,17 +1,23 @@
 <div id="shoppingCart" class="container">
   <h1 class="title has-text-centered">Shopping Cart</h1>
-  <table class="has-text-centered">
-    <tr>
-      <th>Movie Name</th>
-      <th>Rating</th>
-    </tr>
-    <% cart.each do |item| %>
+
+  <div class="table-container">
+    <table class="table has-text-centered is-bordered is-striped">
       <tr>
-        <td><%= item.title %></td>
-        <td><%= item.rating %></td>
+        <th>Movie Name</th>
+        <th>Rating</th>
       </tr>
-    <% end %>
+      <% cart.each do |item| %>
+        <tr>
+          <td><%= item.title %></td>
+          <td><%= item.rating %></td>
+        </tr>
+      <% end %>
 
-  </table>
+    </table>
+  </div>
 
+  <a class="button is-primary" href="#">
+    <strong>Check Out</strong>
+  </a>
 </div>
