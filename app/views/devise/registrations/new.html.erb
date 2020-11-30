@@ -37,6 +37,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :province %><br />
+    <%= f.select :province_id, options_from_collection_for_select(Province.all, :id, :name) %>
+  </div>
+
+  <div class="field">
     <%= f.label :age %><br />
     <%= f.number_field :age %>
   </div>
