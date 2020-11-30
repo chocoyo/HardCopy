@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_214259) do
+ActiveRecord::Schema.define(version: 2020_11_30_215018) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -95,6 +95,17 @@ ActiveRecord::Schema.define(version: 2020_11_30_214259) do
     t.index ["genre_id"], name: "index_movies_on_genre_id"
   end
 
+  create_table "ordered_products", force: :cascade do |t|
+    t.integer "orders_id", null: false
+    t.integer "movie_id"
+    t.integer "quantity"
+    t.integer "price_of_item"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_ordered_products_on_movie_id"
+    t.index ["orders_id"], name: "index_ordered_products_on_orders_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
     t.integer "order_status_id"
@@ -142,5 +153,6 @@ ActiveRecord::Schema.define(version: 2020_11_30_214259) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "movies", "genres"
+  add_foreign_key "ordered_products", "orders", column: "orders_id"
   add_foreign_key "users", "provinces"
 end
