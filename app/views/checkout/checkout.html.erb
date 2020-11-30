@@ -1,0 +1,27 @@
+<div id="order" class="container">
+  <h1 class="title has-text-centered">Order Summeraydadadada</h1>
+
+  <div class="table-container">
+    <table class="table has-text-centered is-bordered is-striped">
+      <tr>
+        <th>Movie Something</th>
+        <th>Price</th>
+      </tr>
+        <tr>
+          <td><%= @order.total %></td>
+          <td><%= @order.PST %></td>
+        </tr>
+
+        <% cart.each do |item| %>
+        <tr>
+          <td><%= item.title %></td>
+          <td><%= item.rating %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <a class="button is-light" href="#">
+    <strong>Buy Me</strong>
+  </a>
+</div>
