@@ -4,8 +4,15 @@ class CheckoutController < ApplicationController
     @order = Order.new
     @order.user_id = current_user
     @order.order_status_id = OrdersStatus.find_or_create_by(name: "New")
-    @order.PST = current_user.province.PST
-    @order.GST = Gst.all.last.rate
+
+    # Check tax rates for user province
+    if current_user.province.HST.nil? || current_user.province.HST.zero?
+      @order.PST = current_user.province.PST
+      @order.GST = Gst.all.last.rate
+    else
+      @order.HST = current_user.province.HST
+    end
+
     @order.total = 10
 
     # Create Items For That Order
