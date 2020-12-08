@@ -63,3 +63,5 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'themoviedb'
 
 gem 'down'
+
+gem 'stripe'
