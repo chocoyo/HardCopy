@@ -1,0 +1,26 @@
+<div id="order" class="container">
+  <h1 class="title has-text-centered">Order Summeraydadadada</h1>
+
+
+  <div class="level">
+      <p class="level-left title">Cart</p>
+      <p class="level-right">Price</p>
+  </div>
+
+
+  <% cart.each do |item| %>
+    <div class="level">
+      <p class="level-left"><%= item.title %></>
+      <p class="level-right"><%= item.price %></p>
+    </div>
+  <% end %>
+
+
+  <a class="button is-light" href="#">
+    <strong>Buy Me</strong>
+  </a>
+
+  <%= form_with url: checkout_create_path, remote: true do %>
+    <%= button_tag 'Buy Now'%>
+  <% end %>
+</div>
