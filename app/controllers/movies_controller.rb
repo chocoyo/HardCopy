@@ -7,4 +7,8 @@ class MoviesController < ApplicationController
     @genre = Genre.where(title: params[:title]).last
     @movies = Movie.where(genre: @genre)
   end
+
+  def show
+    @movie = Movie.find(params[:id])
+  end
 end
