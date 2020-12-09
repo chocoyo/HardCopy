@@ -241,6 +241,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    stripe (5.28.0)
     themoviedb (1.0.1)
       httparty
     thor (1.0.1)
@@ -294,6 +295,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)
+  stripe
   themoviedb
   turbolinks (~> 5)
   tzinfo-data

@@ -1,5 +1,5 @@
 ActiveAdmin.register Movie do
-  permit_params :release_date, :rating, :description, :director, :image, :title, :genre_id
+  permit_params :release_date, :rating, :description, :director, :image, :title, :genre_id, :price
 
   form do |f|
     f.semantic_errors

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_001745) do
+ActiveRecord::Schema.define(version: 2020_12_08_040517) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -92,7 +92,38 @@ ActiveRecord::Schema.define(version: 2020_11_30_001745) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
     t.integer "genre_id", null: false
+    t.integer "price"
     t.index ["genre_id"], name: "index_movies_on_genre_id"
+  end
+
+  create_table "ordered_products", force: :cascade do |t|
+    t.integer "orders_id", null: false
+    t.integer "movie_id"
+    t.integer "quantity"
+    t.integer "price_of_item"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_ordered_products_on_movie_id"
+    t.index ["orders_id"], name: "index_ordered_products_on_orders_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "order_status_id"
+    t.integer "PST"
+    t.integer "GST"
+    t.integer "HST"
+    t.integer "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_status_id"], name: "index_orders_on_order_status_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "orders_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -123,5 +154,6 @@ ActiveRecord::Schema.define(version: 2020_11_30_001745) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "movies", "genres"
+  add_foreign_key "ordered_products", "orders", column: "orders_id"
   add_foreign_key "users", "provinces"
 end

@@ -5,4 +5,15 @@
   <% end %>
   <p><%= movie.director%></p>
   <p><%= movie.description%></p>
+
+  <% if cart.include?(movie) %>
+    <%= button_to cart_path(movie), method: :delete do %>
+      Remove From Cart
+    <% end %>
+  <% else %>
+    <%= form_with url: cart_index_path do %>
+      <%= hidden_field_tag(:id, movie.id)%>
+      <%= button_tag 'Add To Cart' %>
+    <% end %>
+  <% end %>
 </div>
