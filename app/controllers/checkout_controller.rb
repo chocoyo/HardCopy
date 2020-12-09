@@ -17,4 +17,48 @@ class CheckoutController < ApplicationController
 
     # Create Items For That Order
   end
+
+  def create
+    items_for_line = []
+
+    # Add items to the items
+    cart.each do |item|
+      items_for_line << {
+        name:        item.title,
+        description: item.description,
+        amount:      item.price,
+        currency:    "cad",
+        quantity:    1
+      }
+    end
+
+    # Throw the taxes in
+    items_for_line << {
+      name:        "GST",
+      description: "Goods And Services Tax",
+      amount:      13,
+      currency:    "cad",
+      quantity:    1
+    }
+
+    # Connect with stripe
+    @session = Stripe::Checkout::Session.create(
+      payment_method_types: ["card"],
+      success_url:          checkout_success_url,
+      cancel_url:           checkout_cancel_url,
+      line_items:           items_for_line
+    )
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def success
+    # Success
+  end
+
+  def cancel
+    # Something went wrong
+  end
 end

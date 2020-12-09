@@ -10,7 +10,12 @@ Rails.application.routes.draw do
 
   get "/users/show", to: "users#show"
 
-  get "/checkout", to: "checkout#checkout"
-
   resources :cart, only: %i[create destroy show]
+
+  scope "/checkout" do
+    get "/", to: "checkout#checkout"
+    post "create", to: "checkout#create", as: "checkout_create"
+    get "success", to: "checkout#success", as: "checkout_success"
+    get "cancel", to: "checkout#cancel", as: "checkout_cancel"
+  end
 end
