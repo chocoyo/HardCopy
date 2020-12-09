@@ -15,12 +15,7 @@
     </div>
   <% end %>
 
-
-  <a class="button is-light" href="#">
-    <strong>Buy Me</strong>
-  </a>
-
   <%= form_with url: checkout_create_path, remote: true do %>
-    <%= button_tag 'Buy Now'%>
+    <%= button_tag 'Buy Now', class: "button is-light"%>
   <% end %>
 </div>
