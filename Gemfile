@@ -65,3 +65,6 @@ gem 'themoviedb'
 gem 'down'
 
 gem 'stripe'
+
+gem 'rubocop'
+gem 'rubocop-rails'
