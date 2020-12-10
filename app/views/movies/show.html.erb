@@ -1,20 +1,12 @@
-<div class="column card is-one-quarter has-background-link">
+
+<div id="movieShow" class="container has-text-centered">
   <h1 class="title"><%= @movie.title %></h1>
-  <div class="level">
-      <div class="level-left">
         <% if @movie.image.present? %>
           <%= image_tag @movie.image %>
         <% end %>
-      </div>
 
-      <div class="level-right level-item level">
-        <div class="level ">
           <p><%= @movie.director%></p>
-        </div>
-        <div class="level">
           <p><%= @movie.description%></p>
-        </div>
-        <div class="level">
           <% if cart.include?(@movie) %>
             <%= button_to cart_path(@movie), method: :delete do %>
               Remove From Cart
@@ -25,7 +17,5 @@
               <%= button_tag 'Add To Cart' %>
             <% end %>
           <% end %>
-        </div>
-      </div>
   </div>
 </div>
