@@ -28,7 +28,7 @@ class CheckoutController < ApplicationController
       @order.total += item.price
 
       OrderedProduct.create(
-        orders_id:     @order.id,
+        order:         @order,
         movie_id:      item.id,
         quantity:      1,
         price_of_item: item.price
