@@ -29,9 +29,16 @@
           Home
         </a>
 
-        <a class="navbar-item">
-          Documentation
-        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Featured Movies
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/movies/show_movies_of_genre?title=Adventure">New Movies</a>
+            <a class="navbar-item" href="/movies/show_movies_of_genre?title=Fantasy">Updated Movies</a>
+          </div>
+        </div>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
@@ -84,7 +91,6 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= debug session[:cart]%>
     <%= yield %>
   </body>
 </html>
