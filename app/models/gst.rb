@@ -1,3 +1,3 @@
 class Gst < ApplicationRecord
-  validates :name, presence: true
+  validates :rate, presence: true, numericality: true
 end
