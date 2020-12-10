@@ -15,9 +15,29 @@ end
 puts "Deleting data"
 Movie.destroy_all
 Genre.destroy_all
+User.destroy_all
+OrderedProduct.destroy_all
+Order.destroy_all
+OrdersStatus.destroy_all
+Province.destroy_all
+
+puts "Adding Provinces"
+path = File.join(File.dirname(__FILE__), "provinces.json")
+records = JSON.parse(File.read(path))
+records.each do |record|
+  Province.create(
+    name: record["name"],
+    PST:  record["pst"].to_i,
+    HST:  record["hst"].to_i
+  )
+end
+
+puts "Adding Order Statuses"
+OrdersStatus.create(name: "New")
+OrdersStatus.create(name: "Paid")
+OrdersStatus.create(name: "Shipped")
 
 puts "Attempting To Pull From TMDB"
-
 Tmdb::Api.key(ENV["API_KEY"])
 
 Tmdb::Movie.find("harry potter").each do |movie|
