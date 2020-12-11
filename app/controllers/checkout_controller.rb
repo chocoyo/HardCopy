@@ -96,6 +96,9 @@ class CheckoutController < ApplicationController
     @order = Order.where(StripeID: params[:session_id]).last
     @order.order_status_id = OrdersStatus.where(name: "Paid").last.id
     @order.save
+
+    # Reset shopping cart
+    session[:cart] = []
   end
 
   def cancel
