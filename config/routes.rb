@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "movies/index"
   get "/movies/", to: "movies#index"
   get "/movies/show_movies_of_genre", to: "movies#show_movies_of_genre"
+  get "/movies/show_new_movies", to: "movies#show_new_movies"
+  get "/movies/show_updated_movies", to: "movies#show_updated_movies"
   get "/search", to: "movies#search"
   get "movies/:id", to: "movies#show", as: "show_movies"
 

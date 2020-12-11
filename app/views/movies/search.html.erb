@@ -1,11 +1,11 @@
 <div class="container has-text-centered">
 
 
-<div class="searchForm is-centered">
+<div class="searchForm">
   <%= form_tag "/search", class: "searchBar", method: "GET" do %>
     <div class="field has-addons">
       <div class="control">
-        <%= search_field_tag :search, params[:search], placeholder: "Search", class: "input" %>
+        <%= search_field_tag :search, params[:search], placeholder: "Search", class: "input is-centered" %>
       </div>
       <div class="control">
         <div class="select">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <button class="button is-primary" type="submit">Search</button>
-  <%end %>
+  <% end %>
 </div>
 
   <div class="columns is-multiline">

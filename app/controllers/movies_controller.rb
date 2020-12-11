@@ -23,4 +23,11 @@ class MoviesController < ApplicationController
     end
   end
 
+  def show_new_movies
+    @movies = Movie.where("created_at > ?", 2.days.ago)
+  end
+
+  def show_updated_movies
+    @movies = Movie.where("updated_at > ?", 2.days.ago).where("created_at < ?", 2.days.ago)
+  end
 end
