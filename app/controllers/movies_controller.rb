@@ -12,5 +12,15 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  def search; end
+  def search
+    if params[:search].blank? || params[:category].blank?
+      # Nothing!
+    elsif params[:category] == "genre" # Search by genre
+      @genre = Genre.where("lower(title) LIKE :search", search: "%#{params[:search].downcase}%")
+      @movies = Movie.where(genre: @genre)
+    elsif params[:category] == "title" # Search by movie title
+      @movies = Movie.where("lower(title) LIKE :search", search: "%#{params[:search].downcase}%")
+    end
+  end
+
 end

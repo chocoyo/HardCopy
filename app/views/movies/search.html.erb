@@ -1,13 +1,27 @@
-<div class="field has-addons">
-  <div class="control">
-    <input class="input" type="text" placeholder="Search">
-  </div>
-  <div class="control">
-    <div class="select">
-      <select class="has-background-light">
-        <option>Title</option>
-        <option>Something Else</option>
-      </select>
+<div class="container has-text-centered">
+
+
+<div class="searchForm is-centered">
+  <%= form_tag "/search", class: "searchBar", method: "GET" do %>
+    <div class="field has-addons">
+      <div class="control">
+        <%= search_field_tag :search, params[:search], placeholder: "Search", class: "input" %>
+      </div>
+      <div class="control">
+        <div class="select">
+          <select class="has-background-light" name="category">
+            <option value="title">Title</option>
+            <option value="genre">Genre</option>
+          </select>
+        </div>
+      </div>
     </div>
+    <button class="button is-primary" type="submit">Search</button>
+  <%end %>
+</div>
+
+  <div class="columns is-multiline">
+    <%= render partial: 'movie', collection: @movies%>
   </div>
+
 </div>
