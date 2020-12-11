@@ -1,11 +1,12 @@
 <div class="column card is-one-quarter has-background-link">
-  <h1 class="title"><%= movie.title %></h1>
-  <% if movie.image.present? %>
-    <%= image_tag movie.image %>
-  <% end %>
-  <p><%= movie.director%></p>
-  <p><%= movie.description%></p>
-
+  <a href="<%=show_movies_path(movie)%>">
+      <h1 class="title"><%= movie.title %></h1>
+      <% if movie.image.present? %>
+        <%= image_tag movie.image %>
+      <% end %>
+  </a>
+    <p><%= movie.director%></p>
+    <p><%= movie.description%></p>
   <% if cart.include?(movie) %>
     <%= button_to cart_path(movie), method: :delete do %>
       Remove From Cart
@@ -16,5 +17,5 @@
       <%= button_tag 'Add To Cart' %>
     <% end %>
   <% end %>
-  <%= link_to 'Show', show_movies_path(movie) %>
+
 </div>
