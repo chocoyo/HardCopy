@@ -74,7 +74,7 @@ class CheckoutController < ApplicationController
     # Connect with stripe
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ["card"],
-      success_url:          checkout_success_url,
+      success_url:          checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}",
       cancel_url:           checkout_cancel_url,
       line_items:           items_for_line
     )
@@ -89,6 +89,13 @@ class CheckoutController < ApplicationController
 
   def success
     # Success
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+
+    # Mark order as paid
+    @order = Order.where(StripeID: params[:session_id]).last
+    @order.order_status_id = OrdersStatus.where(name: "Paid").last.id
+    @order.save
   end
 
   def cancel
